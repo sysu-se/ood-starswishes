@@ -1,6 +1,6 @@
 <script>
 	import { BOX_SIZE } from '@sudoku/constants';
-	import { gamePaused } from '@sudoku/stores/game';
+	import { exploreMode, gamePaused } from '@sudoku/stores/game';
 	import { grid, userGrid, invalidCells } from '@sudoku/stores/grid';
 	import { settings } from '@sudoku/stores/settings';
 	import { cursor } from '@sudoku/stores/cursor';
@@ -35,7 +35,7 @@
 	</div>
 	<div class="board-padding absolute inset-0 flex justify-center">
 
-		<div class="bg-white shadow-2xl rounded-xl overflow-hidden w-full h-full max-w-xl grid" class:bg-gray-200={$gamePaused}>
+		<div class="bg-white shadow-2xl rounded-xl overflow-hidden w-full h-full max-w-xl grid" class:bg-gray-200={$gamePaused} class:explore-board={$exploreMode.active}>
 
 			{#each $userGrid as row, y}
 				{#each row as value, x}
@@ -60,5 +60,9 @@
 <style>
 	.board-padding {
 		@apply px-4 pb-4;
+	}
+
+	.explore-board {
+		box-shadow: 0 0 0 4px #f59e0b, 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 	}
 </style>
